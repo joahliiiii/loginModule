@@ -61,23 +61,28 @@ function  checkPasss() {
 }
 
 function check() {
-    return (checkUname()&&checkPass()) &&(checkPass()&&checkPasss());/*&&(checkCaptche()&&checkUname())*/
+    // return (checkUname()&&checkPass()) &&(checkPass()&&checkPasss())&&(checkCaptche()&&checkUname());
+    return (checkUname()&&checkPass()) &&(checkPass()&&checkPasss());
 }
 
-/*function checkCaptche() {
+/*function checkCaptche(captcheS) {
     // 先得到input对象
     var capObj=document.getElementById("IcaptcheI");
     var vcap=capObj.value;
     //得到capInfo的对象
     var infoObj=document.getElementById("capInfo");
+    /!*var captcheS='<%=session.getAttribute("captche")%>';
+    alert(captcheS);*!/
+    alert("vcap: "+vcap+" captheS: "+captcheS);
+
     // 如果验证码不相等
-    if(vcap!==captche){
-        capObj.innerHTML="re-enter captche!".fontcolor("Red");
+    if(vcap!==captcheS){
+        infoObj.innerHTML="re-enter captche!".fontcolor("Red");
         // 聚焦在这个对象
         capObj.focus();
         return false;
     }else{
-        capObj.innerHTML="";
+        infoObj.innerHTML="ok".fontcolor("Green");
         return true;
     }
 }*/

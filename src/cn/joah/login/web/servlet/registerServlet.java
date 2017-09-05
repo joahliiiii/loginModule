@@ -11,6 +11,7 @@ import java.io.IOException;
 public class registerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        response.getWriter().write("hello");
+
         // 先设置编码问题
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -25,10 +26,10 @@ public class registerServlet extends HttpServlet {
             if(sCap.equalsIgnoreCase(captche)){
                 response.getWriter().write("hello data will transfer to database!");
                 return;
-            }/*else{// 如果不相同的话就转发到注册页面
+            }else{// 如果不相同的话就转发到注册页面
                 request.getRequestDispatcher("/jsps/regist.jsp").forward(request,response);
 //            return;
-            }*/
+            }
         }
         request.getRequestDispatcher("/jsps/regist.jsp").forward(request,response);
     }
