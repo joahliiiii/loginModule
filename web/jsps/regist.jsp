@@ -19,7 +19,7 @@
     <form action="${pageContext.request.contextPath}/cn/joah/login/web/servlet/registerServlet" method="post">
         <label for="username">username: </label><br><input type="text" name="username" id="username" onblur="checkUname()"><span id="userInfo" ></span><br>
         <label for="password">password: <br></label><input type="password" name="password" id="password" onblur="checkPass()"><span id="passInfo"></span><br>
-        <label for="conPassword">Confirmed password: <br></label><input type="password" name="confirmPass" id="conPassword" onblur="checkPasss()"><span id="conpassInfo"></span><br>
+        <label for="conPassword">Confirmed password: <br></label><input type="password" name="confirmPass" id="conPassword" onblur="checkPasses()"><span id="conpassInfo"></span><br>
         sex: <input type="radio" name="sex" value="male" id="male"><label for="male">male</label>
         <input type="radio" name="sex" value="female" id="female"><label for="female">female<br></label>
         <label for="email">email: <br></label><input type="text" name="email" id="email"><br>
@@ -27,7 +27,7 @@
         <label for="profile">profile: <br></label><textarea name="profile" style="width: 334px; height: 42px;" id="profile"></textarea> <br>
         <%--<input type="text" name="captche" style="width: 53px" id="IcaptcheI" onblur="checkCaptche(${sessionScope.captche})"/>--%>
         <label for="IcaptcheI">captche:</label><input type="text" name="captche" style="width: 53px" id="IcaptcheI"/>
-        <a href="javascript:captcheChange()"><img id="ICaptche" src="${pageContext.request.contextPath}/cn/joah/login/web/servlet/captcheServlet"></a>
+        <a href="javascript:captcheChange()"><img id="ICaptche" src="${pageContext.request.contextPath}/cn/joah/login/commons/captche/captcheServlet"></a>
         <span id="capInfo"></span><br>
         <button type="submit" onclick="return check()"  >submit</button>
     </form>

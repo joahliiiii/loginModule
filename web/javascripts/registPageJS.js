@@ -40,7 +40,7 @@ function checkPass() {
     }
 }
 
-function  checkPasss() {
+function  checkPasses() {
     // 先获取两个密码框的对象
     var pass=document.getElementById("password");
     var conPass=document.getElementById("conPassword");
@@ -50,7 +50,21 @@ function  checkPasss() {
     // 获取conpassInfo 对象
     var cpassInfo=document.getElementById("conpassInfo");
     // 如果两次密码不匹配
-    if(vconpass !== vpass && (8>vpass.length && vpass.length>24)){
+    // alert("cpass.len : "+vconpass.length);
+    /*if((vconpass.length<8 || vconpass.length>24)&&(vconpass !== vpass)){
+        cpassInfo.innerHTML="Two password are different!".fontcolor("Red");
+        conPass.focus();
+        return false;
+    }else{
+        cpassInfo.innerHTML="ok".fontcolor("Green");
+        return true;
+    }*/
+    if(vconpass.length===0){
+        cpassInfo.innerHTML="Password can't be empty!".fontcolor("Red");
+        conPass.focus();
+        return false;
+    }
+    if((vconpass.length<8 || vconpass.length>24)&&(vconpass !== vpass)){
         cpassInfo.innerHTML="Two password are different!".fontcolor("Red");
         conPass.focus();
         return false;
@@ -58,11 +72,12 @@ function  checkPasss() {
         cpassInfo.innerHTML="ok".fontcolor("Green");
         return true;
     }
+
 }
 
 function check() {
     // return (checkUname()&&checkPass()) &&(checkPass()&&checkPasss())&&(checkCaptche()&&checkUname());
-    return (checkUname()&&checkPass()) &&(checkPass()&&checkPasss());
+    return (checkUname()&&checkPass()) &&(checkPass()&&checkPasses());
 }
 
 /*function checkCaptche(captcheS) {

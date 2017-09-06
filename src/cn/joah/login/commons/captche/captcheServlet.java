@@ -1,6 +1,4 @@
-package cn.joah.login.web.servlet;
-
-import cn.joah.login.entity.Captche;
+package cn.joah.login.commons.captche;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-@WebServlet(name = "captcheServlet",urlPatterns = "/cn/joah/login/web/servlet/captcheServlet")
+@WebServlet(name = "captcheServlet",urlPatterns = "/cn/joah/login/commons/captche/captcheServlet")
 public class captcheServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,4 +1,4 @@
-package cn.joah.login.entity;
+package cn.joah.login.commons.captche;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
