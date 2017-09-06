@@ -20,4 +20,14 @@
 5.本来是打算用js来校验验证码的,后来试了一下之后发现那个存在session里面的验证码文本在js里面获取不到,
     使用在jsp里面创建变量之后发现在js里面可以使用,但是会在js页面报出空指针错误.哈? 怎么搞
     之后试了一下传参数,但是获取session里面的值之后发现总是获取的是上一次的值或者undefined..怎么搞?
-6.
+6.使用statement 和 preparesStatement
+    connection.createStatement();
+    connection.preparedStatement(sql);
+7.在测试selectInfo()的时候出现了问题,看了错误提示之后发现是我的静态成员变量resultSet作为了return参数,然而我在这之前就吧这个资源释放了...
+    所以selectInfo函数里面释放资源的时候一定要注意.在这里发现如果要resultSet存在的话就不能释放connection,和 preparedStatement 资源
+    所以怎么办???
+    在这之前我试了两种得到resultSet的方式
+        connection.createStatement().exeuteQuery(sql); 和 connection.preparedStatement(sql).executeQuery();
+        在爆出空指针的时候我以为是两种方式里面的一种是有问题的,然而并不是,只是因为在out里面写的参数是我没有赋值的....
+    需要注意的是resultSet的0号元素是没有的.
+
