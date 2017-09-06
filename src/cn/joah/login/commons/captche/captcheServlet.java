@@ -12,6 +12,8 @@ import java.io.IOException;
 public class captcheServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        response.getWriter().write("hello this is captcheServlet!");
+
         Captche captche=new Captche();
         BufferedImage image = captche.getImage(4, 5, 0.07F);
         // 把验证码的文本保存到Session里面

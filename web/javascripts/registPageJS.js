@@ -107,5 +107,5 @@ function captcheChange() {
     // 先获取img对象
     var objCaptche=document.getElementById("ICaptche");
     // 设置 src 属性  这里加了时间的参数是因为如果生成的图片的src 如果不变的话就会因为缓存的原因不在重新加载图片
-    objCaptche.src= contextPath+"/cn/joah/login/web/servlet/captcheServlet?"+new Date().getTime();
+    objCaptche.src= contextPath+"/cn/joah/login/commons/captche/captcheServlet?"+new Date().getTime();
 }
