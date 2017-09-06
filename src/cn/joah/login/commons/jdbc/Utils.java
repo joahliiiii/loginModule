@@ -22,8 +22,14 @@ public class Utils {
     }
     private static Connection connection=null;
 
+    /**
+     * 返回数据库连接
+     * @return connection
+     * @throws SQLException
+     */
     public static Connection getConnection() throws SQLException{
         connection=dataSource.getConnection();
         return connection;
     }
+
 }
