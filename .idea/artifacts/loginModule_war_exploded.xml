@@ -7,6 +7,12 @@
         <element id="directory" name="classes">
           <element id="module-output" name="loginModule" />
         </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../../../Acer/InstallationPackage/BaiduDiskDownload/Learning/jar/c3p0-0.9.5.1/c3p0-0.9.5.1.jar" />
+          <element id="library" level="module" name="JUnit4" module-name="loginModule" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../../../Acer/InstallationPackage/BaiduDiskDownload/Learning/jar/c3p0-0.9.5.1/mchange-commons-java-0.2.10.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../../../Acer/InstallationPackage/BaiduDiskDownload/Learning/jar/mysql-connector-java-5.1.40-bin.jar" />
+        </element>
       </element>
     </root>
   </artifact>
