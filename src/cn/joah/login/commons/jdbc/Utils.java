@@ -19,10 +19,10 @@ public class Utils {
 //        System.setProperty("com.mchange.v2.c3p0.cfg.xml", "configs/c3p0-config.xml");
         dataSource=new ComboPooledDataSource("c3p0config");
     }
-    private static Connection connection=null;
-    private static Statement state=null;
-    private static PreparedStatement preStatemt=null;
-    private static ResultSet resultSet=null;
+//    private static Connection connection=null;
+//    private static Statement state=null;
+//    private static PreparedStatement preStatemt=null;
+//    private static ResultSet resultSet=null;
 
 
 
@@ -31,8 +31,13 @@ public class Utils {
      * @return connection
      * @throws SQLException
      */
-    public static Connection getConnection() throws SQLException{
-        connection=dataSource.getConnection();
+    public static Connection getConnection(){
+        Connection connection=null;
+        try {
+            connection=dataSource.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return connection;
     }
 
@@ -44,13 +49,24 @@ public class Utils {
      * @throws SQLException
      */
     public static void updateInfo(Connection conn ,String sql ,String ...args){
+        PreparedStatement preStatemt=null;
         try {
             preStatemt = conn.prepareStatement(sql);
+
+//            for (int i = 0; i < args.length; i++) {
+//                String arg = args[i];
+//                System.out.print(args[i]+"\t");
+//            }
+//            System.out.println();
+
             for (int i = 0; i < args.length; i++) {
                 // setXXX() 里面的第一个参数的下标是从 1 开始
                 preStatemt.setObject(i+1,args[i]);
             }
             preStatemt.executeUpdate();
+
+
+//            System.out.println("update success.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -60,12 +76,14 @@ public class Utils {
 
     /**
      * 查找  这里不建议返回的resultSet是成员变量.
-     * 在这里要注意,如果需要返回的resultSet是成员变量,那么就要注意了,不要吧resultSet释放了
+     * 在这里要注意,如果需要返回的resultSet是成员变量,那么就要注意了,不要吧resultSet释放了,
+     * 但是哪个都不能释放啊.,难道不释放么?
      * @param conn 数据库连接
      * @param sql sql语句
 //     * @param args 不定参数
      */
     public static ResultSet selectInfo(Connection conn,String sql){
+        PreparedStatement preStatemt=null;
         ResultSet resultSet1=null;
         try {
 //            System.out.println("SQL: "+sql+"\n conn: "+conn);
@@ -80,6 +98,7 @@ public class Utils {
     }
     /**
      * 释放资源,最后创建的最先释放
+     * 我也不知道这个释放资源方法是否完全正确 .但是感觉是正确的.
      * @param conn 数据库连接
      * @param preState preparedStatement
      * @param resSet 结果集
