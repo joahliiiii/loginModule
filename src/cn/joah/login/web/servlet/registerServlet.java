@@ -25,6 +25,11 @@ public class registerServlet extends HttpServlet {
             // 如果相同 就吧数据存储到数据库内 ,重定向到登录页面
             if(sCap.equalsIgnoreCase(captche)){
                 response.getWriter().write("hello data will transfer to database!");
+                /**
+                 * 需要新增加邮箱和profile的非法字符检测.
+                 * 先验证看看这里获取的参数是否全部正确,然后在进行下面的操作.
+                 * 在这里需要吧密码先进行hash计算在吧所有数据存入数据库
+                 */
                 return;
             }else{// 如果不相同的话就转发到注册页面
                 request.getRequestDispatcher("/jsps/regist.jsp").forward(request,response);

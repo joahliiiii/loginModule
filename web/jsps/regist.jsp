@@ -22,7 +22,7 @@
         <label for="conPassword">Confirmed password: <br></label><input type="password" name="confirmPass" id="conPassword" onblur="checkPasses()"><span id="conpassInfo"></span><br>
         sex: <input type="radio" name="sex" value="male" id="male"><label for="male">male</label>
         <input type="radio" name="sex" value="female" id="female"><label for="female">female<br></label>
-        <label for="email">email: <br></label><input type="text" name="email" id="email"><br>
+        <label for="email">email: <br></label><input type="text" name="email" id="email" onblur="checkMail()"><span id="mailInfo"></span><br>
         <label for="website">website: <br></label><input type="text" name="website" id="website"><br>
         <label for="profile">profile: <br></label><textarea name="profile" style="width: 334px; height: 42px;" id="profile"></textarea> <br>
         <%--<input type="text" name="captche" style="width: 53px" id="IcaptcheI" onblur="checkCaptche(${sessionScope.captche})"/>--%>

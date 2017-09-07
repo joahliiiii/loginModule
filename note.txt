@@ -30,4 +30,4 @@
         connection.createStatement().exeuteQuery(sql); 和 connection.preparedStatement(sql).executeQuery();
         在爆出空指针的时候我以为是两种方式里面的一种是有问题的,然而并不是,只是因为在out里面写的参数是我没有赋值的....
     需要注意的是resultSet的0号元素是没有的.
-
+8.知道了具体在校验函数里面写return的用处,可以吧本状态的具体信息传递给check(),最终实现有一个input是false就不能提交.
