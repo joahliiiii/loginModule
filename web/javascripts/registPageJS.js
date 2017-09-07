@@ -75,11 +75,36 @@ function  checkPasses() {
 
 }
 
-function check() {
-    // return (checkUname()&&checkPass()) &&(checkPass()&&checkPasss())&&(checkCaptche()&&checkUname());
-    return (checkUname()&&checkPass()) &&(checkPass()&&checkPasses());
+/**
+ * 邮箱非法字符检测
+ */
+function checkMail() {
+    var mailReg=/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+    // 获得mail 输入框对象
+    var mailObj=document.getElementById("email");
+    // 获得mail的值
+    var mailV=mailObj.value;
+    // 获得mail 输入狂后面的输出信息框对象
+    var mInfoO=document.getElementById("mailInfo");
+
+    // 如果mail 合法
+    if(mailReg.test(mailV)){
+        mInfoO.innerHTML="ok".fontcolor("Green");
+        return true;
+    }else{// mail 含有非法字符
+        mInfoO.innerHTML="check your mail!".fontcolor("Red");
+        mailObj.focus();
+        return false;
+    }
+
 }
 
+/*function checkProfile() {
+    var fileObj=document.getElementById("profile");
+    var infoObj=document.getElementById("proInfo");
+    var fileV=fileObj.value;
+    var fileReg=/^[]$/;
+}*/
 /*function checkCaptche(captcheS) {
     // 先得到input对象
     var capObj=document.getElementById("IcaptcheI");
@@ -108,4 +133,9 @@ function captcheChange() {
     var objCaptche=document.getElementById("ICaptche");
     // 设置 src 属性  这里加了时间的参数是因为如果生成的图片的src 如果不变的话就会因为缓存的原因不在重新加载图片
     objCaptche.src= contextPath+"/cn/joah/login/commons/captche/captcheServlet?"+new Date().getTime();
+}
+
+function check() {
+    // return (checkUname()&&checkPass()) &&(checkPass()&&checkPasss())&&(checkCaptche()&&checkUname());
+    return ((checkUname()&&checkPass()) &&(checkPass()&&checkPasses()))&& checkMail();
 }

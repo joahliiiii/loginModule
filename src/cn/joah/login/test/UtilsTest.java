@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class UtilsTest {
     @Test
-    public void getConnectionTest() throws Exception {
+    public void getConnectionTest() {
         Connection connection = Utils.getConnection();
         System.out.println(connection);
     }
@@ -18,15 +18,12 @@ public class UtilsTest {
     public void updateInfoTest(){
 //        Utils utils=new Utils();
         String sql="insert into user(username,password) values(?,?)";
-        Connection connection = null;
-        try {
-            connection = Utils.getConnection();
-            Utils.updateInfo(connection,sql,"summering","joah");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            Utils.release(connection,null,null);
-        }
+        Connection connection;
+        connection = Utils.getConnection();
+        Utils.updateInfo(connection,sql,"summering","joah");
+
+        Utils.release(connection,null,null);
+
     }
     @Test
     public void selectInfoTest(){

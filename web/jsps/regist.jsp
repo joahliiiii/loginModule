@@ -24,7 +24,7 @@
         <input type="radio" name="sex" value="female" id="female"><label for="female">female<br></label>
         <label for="email">email: <br></label><input type="text" name="email" id="email" onblur="checkMail()"><span id="mailInfo"></span><br>
         <label for="website">website: <br></label><input type="text" name="website" id="website"><br>
-        <label for="profile">profile: <br></label><textarea name="profile" style="width: 334px; height: 42px;" id="profile"></textarea> <br>
+        <label for="profile">profile: <br></label><textarea name="profile" style="width: 334px; height: 42px;" id="profile" onblur="checkProfile()"></textarea><span id="proInfo"></span> <br>
         <%--<input type="text" name="captche" style="width: 53px" id="IcaptcheI" onblur="checkCaptche(${sessionScope.captche})"/>--%>
         <label for="IcaptcheI">captche:</label><input type="text" name="captche" style="width: 53px" id="IcaptcheI"/>
         <a href="javascript:captcheChange()"><img id="ICaptche" src="${pageContext.request.contextPath}/cn/joah/login/commons/captche/captcheServlet"></a>
