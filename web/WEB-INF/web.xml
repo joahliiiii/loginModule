@@ -3,8 +3,4 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-    <!--<context-param>
-        <param-name>c3p0config</param-name>
-        <param-value>configs/c3p0-config.xml</param-value>
-    </context-param>-->
 </web-app>

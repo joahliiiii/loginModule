@@ -96,6 +96,31 @@ public class Utils {
         }
         return resultSet1;
     }
+
+    /**
+     * 带参数的查询
+     * @param conn 数据库连接
+     * @param sql sql语句
+     * @param args 不定参数
+     * @return 返回结果集
+     */
+    public static ResultSet selectInfo(Connection conn,String sql, String ...args){
+        PreparedStatement preSdtmt=null;
+        ResultSet resSet=null;
+
+        try {
+            preSdtmt=conn.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                preSdtmt.setObject(i+1,args[i]);
+            }
+            resSet=preSdtmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+//            Utils.release(conn,preSdtmt,resSet);
+        }
+        return resSet;
+    }
     /**
      * 释放资源,最后创建的最先释放
      * 我也不知道这个释放资源方法是否完全正确 .但是感觉是正确的.

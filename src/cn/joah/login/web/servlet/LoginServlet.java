@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "loginServlet",urlPatterns = "/cn/joah/login/web/servlet/loginServlet")
-public class loginServlet extends HttpServlet {
+@WebServlet(name = "LoginServlet",urlPatterns = "/cn/joah/login/web/servlet/LoginServlet")
+public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }

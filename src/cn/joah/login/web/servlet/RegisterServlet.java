@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.sql.Connection;
 
 
-@WebServlet(name = "registerServlet", urlPatterns = "/cn/joah/login/web/servlet/registerServlet")
-public class registerServlet extends HttpServlet {
+@WebServlet(name = "RegisterServlet", urlPatterns = "/cn/joah/login/web/servlet/RegisterServlet")
+public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        response.getWriter().write("hello");
 
@@ -43,7 +43,7 @@ public class registerServlet extends HttpServlet {
                     String profile = request.getParameter("profile");
                     response.getWriter().write("\n"+"uName: "+uName+" pass: "+pass +" sex: "+sex+" email: "+email+" website:"+website
                     +" profile: "+profile);
-                    String sql="insert into user(username,password,sex,email,website,profile) values(?,?,?,?,?,?)";
+                    String sql="insert into User(username,password,sex,email,website,profile) values(?,?,?,?,?,?)";
 //                    System.out.println("before connection!");
 //                    Utils utils=new Utils();
                     Connection connection = Utils.getConnection();
@@ -54,13 +54,17 @@ public class registerServlet extends HttpServlet {
 //                    Utils.release(connection,null,null);
 //                    System.out.println("insert over!");
 
+                    // 保存了之后重定向到登录界面
+                    response.sendRedirect("/jsps/login.jsp");
+
                 return;
             }else{// 如果不相同的话就转发到注册页面
                 request.getRequestDispatcher("/jsps/regist.jsp").forward(request,response);
 //            return;
             }
+        }else{// 如果验证码为空
+            request.getRequestDispatcher("/jsps/regist.jsp").forward(request,response);
         }
-        request.getRequestDispatcher("/jsps/regist.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

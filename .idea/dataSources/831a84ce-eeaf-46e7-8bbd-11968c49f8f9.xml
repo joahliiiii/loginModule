@@ -10,7 +10,7 @@
     <schema id="4" parent="1" name="mysql"/>
     <schema id="5" parent="1" name="performance_schema"/>
     <schema id="6" parent="1" name="sys"/>
-    <table id="7" parent="2" name="user"/>
+    <table id="7" parent="2" name="User"/>
     <column id="8" parent="7" name="username">
       <Position>1</Position>
       <DataType>varchar(20)|0</DataType>
@@ -37,5 +37,10 @@
       <Position>6</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
+    <key id="14" parent="7" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>username</ColNames>
+      <Primary>1</Primary>
+    </key>
   </database-model>
 </dataSource>

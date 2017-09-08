@@ -3,7 +3,7 @@ package cn.joah.login.entity;
 /**
  * 实体类
  */
-public class user {
+public class User {
     private String username;
     private String password;
     private String email;
@@ -11,11 +11,11 @@ public class user {
     private String profile;
     private String website;
 
-    public user() {
+    public User() {
         super();
     }
 
-    public user(String username, String password, String email, String sex, String profile, String website) {
+    public User(String username, String password, String email, String sex, String profile, String website) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -29,14 +29,14 @@ public class user {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        user user = (user) o;
+        User User = (User) o;
 
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (sex != null ? !sex.equals(user.sex) : user.sex != null) return false;
-        if (profile != null ? !profile.equals(user.profile) : user.profile != null) return false;
-        return website != null ? website.equals(user.website) : user.website == null;
+        if (username != null ? !username.equals(User.username) : User.username != null) return false;
+        if (password != null ? !password.equals(User.password) : User.password != null) return false;
+        if (email != null ? !email.equals(User.email) : User.email != null) return false;
+        if (sex != null ? !sex.equals(User.sex) : User.sex != null) return false;
+        if (profile != null ? !profile.equals(User.profile) : User.profile != null) return false;
+        return website != null ? website.equals(User.website) : User.website == null;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class user {
 
     @Override
     public String toString() {
-        return "user{" +
+        return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +

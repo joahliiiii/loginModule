@@ -1,19 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <c3p0-config>
     <named-config name="c3p0config">
-        <property name="jdbcUrl">jdbc:mysql://127.0.0.1:3306/javaWebDB</property>
-        <property name="driverClass">com.mysql.jdbc.Driver</property>
+
         <property name="user">joah</property>
         <property name="password">1253794398</property>
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/javaWebDB</property>
 
-        <!--&lt;!&ndash;当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 &ndash;&gt;-->
-        <!--<property name="acquireIncrement">3</property>-->
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+        <property name="acquireIncrement">3</property>
 
-        <!--&lt;!&ndash;定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 &ndash;&gt;-->
-        <!--<property name="acquireRetryAttempts">30</property>-->
+        <!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+        <property name="acquireRetryAttempts">30</property>
 
-        <!--&lt;!&ndash;两次连接中间隔时间，单位毫秒。Default: 1000 &ndash;&gt;-->
-        <!--<property name="acquireRetryDelay">1000</property>-->
+        <!--两次连接中间隔时间，单位毫秒。Default: 1000 -->
+        <property name="acquireRetryDelay">1000</property>
 
         <!--&lt;!&ndash;连接关闭时默认将所有未提交的操作回滚。Default: false &ndash;&gt;-->
         <!--<property name="autoCommitOnClose">false</property>-->

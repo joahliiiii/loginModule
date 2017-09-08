@@ -11,6 +11,9 @@
     <title>login</title>
 </head>
 <body>
+    <p>hello this is login.jsp</p>
+    <form action="/cn/joah/login/web/servlet/loginServlet" method="post">
 
+    </form>
 </body>
 </html>
