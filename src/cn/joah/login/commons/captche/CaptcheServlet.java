@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-@WebServlet(name = "captcheServlet",urlPatterns = "/cn/joah/login/commons/captche/captcheServlet")
-public class captcheServlet extends HttpServlet {
+@WebServlet(name = "CaptcheServlet",urlPatterns = "/cn/joah/login/commons/captche/CaptcheServlet")
+public class CaptcheServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        response.getWriter().write("hello this is captcheServlet!");
+//        response.getWriter().write("hello this is CaptcheServlet!");
 
         Captche captche=new Captche();
         BufferedImage image = captche.getImage(4, 5, 0.07F);
