@@ -54,7 +54,7 @@ public class UserDao {
         Connection connection=Utils.getConnection();
         // 在这里注意插入的是pass的 hashCode
         Utils.updateInfo(connection,sql,
-                user.getUsername(),String.valueOf(user.getPassword().hashCode()),user.getSex(),user.getEmail(),user.getWebsite(),user.getProfil());
+                user.getUsername(),String.valueOf(user.getPassword().hashCode()),user.getSex(),user.getEmail(),user.getWebsite(),user.getProfile());
 
     }
 }

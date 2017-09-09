@@ -13,6 +13,8 @@
     <script src="${pageContext.request.contextPath}/javascripts/registPageJS.js" ></script>
 </head>
 <body>
+    <%--这里显示错误信息--%>
+    <p align="center" style="color: red;font-weight: 100"> ${msg}</p>
     <h1>Join us</h1>
     <p>The best way to design, build, and ship software.</p>
     <h2>Create your personal account.</h2>

@@ -40,3 +40,11 @@
     但是我在插入信息之后加了一个关闭connection的并没有用..不知道是哪里的资源没关,难道是数据库连接池?
 11.报错Access denied for user ''@'localhost' (using password: YES)
     一直爆这个错,直到我吧原来的c3p0-config.xml 文件删除了,并重新复制了一分过来.然后就好了....
+12.反射相关
+    clazz.getConstructors() 获取所有的构造方法
+    clazz.getFields() 获取所有的public 的属性
+    clazz.getDeclaredFields() 获取所有的属性
+    clazz.getMethods() 获取所有的方法(包含父类的方法)
+    clazz.getDeclaredMethods() 获取所有的本类的方法
+
+    PropertyDescriptor 是一个属性描述器,通过传入属性名和Class 就可以得到 bean的get/set方法

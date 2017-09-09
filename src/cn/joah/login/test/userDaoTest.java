@@ -23,7 +23,7 @@ public class userDaoTest {
         user.setSex("female");
         user.setEmail("summering@joah.com");
         user.setWebsite("www.joah.com");
-        user.setProfil("local");
+        user.setProfile("local");
         UserDao userDao=new UserDao();
         userDao.insertUser(user);
     }

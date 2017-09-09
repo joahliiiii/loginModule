@@ -1,5 +1,6 @@
 package cn.joah.login.commons.jdbc;
 
+import cn.joah.login.entity.User;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import javax.sql.DataSource;
@@ -53,12 +54,6 @@ public class Utils {
         try {
             preStatemt = conn.prepareStatement(sql);
 
-//            for (int i = 0; i < args.length; i++) {
-//                String arg = args[i];
-//                System.out.print(args[i]+"\t");
-//            }
-//            System.out.println();
-
             for (int i = 0; i < args.length; i++) {
                 // setXXX() 里面的第一个参数的下标是从 1 开始
                 preStatemt.setObject(i+1,args[i]);
@@ -74,6 +69,9 @@ public class Utils {
         }
     }
 
+/*    public static void updateInfo(Connection conn , String sql , User user){
+        updateInfo(conn,sql,user);
+    }*/
     /**
      * 查找  这里不建议返回的resultSet是成员变量.
      * 在这里要注意,如果需要返回的resultSet是成员变量,那么就要注意了,不要吧resultSet释放了,
