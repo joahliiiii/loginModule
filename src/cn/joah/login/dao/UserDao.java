@@ -2,6 +2,8 @@ package cn.joah.login.dao;
 
 import cn.joah.login.commons.jdbc.Utils;
 import cn.joah.login.entity.User;
+import cn.joah.login.service.UserException;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,7 +18,7 @@ public class UserDao {
      * @param uName
      * @return 如果查询结果不为空,那么返回ture  否则返回false
      */
-    public boolean findByUsername(String uName){
+    public boolean findByUsername(String uName) throws UserException {
         /**
          * 先获取链接
          * 写好sql
@@ -34,7 +36,11 @@ public class UserDao {
             }/*else if(count == 2){
                 return true;
             }*/
-        } catch (SQLException e) {
+        } catch (MySQLIntegrityConstraintViolationException e){
+            return true;
+//            throw new UserException("");
+//            e.printStackTrace();
+        }catch (SQLException e){
             e.printStackTrace();
         }
         return true;
