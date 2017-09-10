@@ -38,17 +38,23 @@ public class RegisterServlet extends HttpServlet {
                 User user = ReflectUtils.toBean(parameterMap, User.class);
 
                 try {
+                    // 注册
                     userService.register(user);
+                    // 注册成功之后显示注册成功的信息, 并转发到登录界面
+                    response.getWriter().write(" 注册成功! ");
+//            response.sendRedirect("/jsps/login.jsp");
                 } catch (UserException e) {
                     request.setAttribute("msg",e.getMessage());
+
+                    // 把表单数据回显
+                    request.setAttribute("User",user);
+
                     request.getRequestDispatcher("/jsps/regist.jsp").forward(request,response);
                 }
             } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException | IntrospectionException e) {
                 e.printStackTrace();
             }
-            // 注册成功之后显示注册成功的信息, 并转发到登录界面
-            response.getWriter().write(" 注册成功! ");
-            response.sendRedirect("/jsps/login.jsp");
+
 
         }else{// 如果验证码错误
             request.getRequestDispatcher("/jsps/regist.jsp").forward(request,response);
