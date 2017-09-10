@@ -1,8 +1,7 @@
 package cn.joah.login.commons.jdbc;
 
-import cn.joah.login.entity.User;
-import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import javax.sql.DataSource;
 import java.sql.*;
 
@@ -30,7 +29,6 @@ public class Utils {
     /**
      * 返回数据库连接
      * @return connection
-     * @throws SQLException
      */
     public static Connection getConnection(){
         Connection connection=null;
@@ -49,7 +47,7 @@ public class Utils {
      * @param args 不定参数
      * @throws SQLException
      */
-    public static void updateInfo(Connection conn ,String sql ,String ...args){
+    public static void updateInfo(Connection conn ,String sql ,String ...args) {
         PreparedStatement preStatemt=null;
         try {
             preStatemt = conn.prepareStatement(sql);
@@ -60,11 +58,10 @@ public class Utils {
             }
             preStatemt.executeUpdate();
 
-
 //            System.out.println("update success.");
-        } catch (SQLException e) {
+        }catch (SQLException e){
             e.printStackTrace();
-        } finally {
+        }finally {
             release(conn,preStatemt,null);
         }
     }

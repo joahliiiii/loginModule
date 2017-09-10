@@ -11,8 +11,11 @@
           <element id="file-copy" path="$PROJECT_DIR$/../../../../../../Acer/InstallationPackage/BaiduDiskDownload/Learning/jar/c3p0-0.9.5.1/mchange-commons-java-0.2.10.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/../../../../../../Acer/InstallationPackage/BaiduDiskDownload/Learning/jar/mysql-connector-java-5.1.40-bin.jar" />
           <element id="library" level="module" name="JUnit4" module-name="loginModule" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../../../Acer/InstallationPackage/BaiduDiskDownload/Learning/jar/jstl-1.2.jar" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="loginModule/web/Web" />
+      <element id="artifact" artifact-name="loginModule:Web exploded" />
     </root>
   </artifact>
 </component>

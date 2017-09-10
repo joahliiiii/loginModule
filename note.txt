@@ -48,3 +48,11 @@
     clazz.getDeclaredMethods() 获取所有的本类的方法
 
     PropertyDescriptor 是一个属性描述器,通过传入属性名和Class 就可以得到 bean的get/set方法
+13.关于 resultSet
+    resultSet 的第一行第一列都是空的(下表为0)
+    所以在取值的时候需要先吧resultSet.next()然后再getObject(1/2/3/4...)
+    resultSet.getMetaData().getColumnCount() 获取的是列的数目!!!
+14.EL 表达式
+    EL表达式如果查找不到值的话就返回"" 而不是null, 这一点在jsp里面很不错 .
+15.数据回显
+    可以使用EL表达式和request 来达到数据回显的功能
