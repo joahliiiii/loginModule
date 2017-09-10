@@ -46,6 +46,22 @@ public class UserService {
     }
 
     /**
+     * 登录
+     * @param uName 用户名
+     * @param password 密码
+     * @return 登陆成功返回true 否则
+     */
+    public boolean login(String uName,String password)  {
+
+        UserDao userDao = new UserDao();
+        String dbPass = userDao.selectPasswordByUsername(uName);
+        String hashPassword = String.valueOf(password.hashCode());
+       /* System.out.println(" pass: "+dbPass+" password: "+password);
+        System.out.println("hPassword: "+hashPassword);*/
+        return hashPassword.equals(dbPass);
+    }
+
+    /**
      * 校验验证码是否写正确
      * @param captche  从表单获取的验证码
      * @param textFromSession 存在session里面的验证码文本

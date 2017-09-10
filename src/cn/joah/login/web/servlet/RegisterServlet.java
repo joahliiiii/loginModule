@@ -44,7 +44,7 @@ public class RegisterServlet extends HttpServlet {
                     response.getWriter().write(" 注册成功! ");
 //            response.sendRedirect("/jsps/login.jsp");
                 } catch (UserException e) {
-                    request.setAttribute("msg",e.getMessage());
+                    request.setAttribute("registPageErr",e.getMessage());
 
                     // 把表单数据回显
                     request.setAttribute("User",user);
@@ -57,6 +57,7 @@ public class RegisterServlet extends HttpServlet {
 
 
         }else{// 如果验证码错误
+            request.setAttribute("registPageErr","验证码错误!");
             request.getRequestDispatcher("/jsps/regist.jsp").forward(request,response);
         }
     }

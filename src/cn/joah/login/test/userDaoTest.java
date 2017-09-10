@@ -28,5 +28,15 @@ public class userDaoTest {
         UserDao userDao=new UserDao();
         userDao.insertUser(user);
     }
+    @Test
+    public  void selectPasswordByUsernameTest(){
+        UserDao userDao=new UserDao();
+        String s = userDao.selectPasswordByUsername("summering");
+        if(s.equals("")){
+            System.out.println("不存在这个用户名!");
+        }else {
+            System.out.println("密码: "+s);
+        }
+    }
 
 }

@@ -27,7 +27,7 @@ public class User {
                 '}';
     }
 
-    @Override
+/*    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -51,7 +51,7 @@ public class User {
         result = 31 * result + profile.hashCode();
         result = 31 * result + website.hashCode();
         return result;
-    }
+    }*/
 
     public User(String username, String password, String email, String sex, String profile, String website) {
 

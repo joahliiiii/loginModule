@@ -139,3 +139,7 @@ function check() {
     // return (checkUname()&&checkPass()) &&(checkPass()&&checkPasss())&&(checkCaptche()&&checkUname());
     return ((checkUname()&&checkPass()) &&(checkPass()&&checkPasses()))&& checkMail();
 }
+
+function  checkLogin() {
+    return checkUname() && checkPass();
+}

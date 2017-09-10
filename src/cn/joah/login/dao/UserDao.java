@@ -19,7 +19,7 @@ public class UserDao {
      * @param uName
      * @return 如果不存在这个username就返回false
      */
-    public boolean findByUsername(String uName) throws UserException {
+    public boolean findByUsername(String uName) {
         /**
          * 先获取链接
          * 写好sql
@@ -55,8 +55,42 @@ public class UserDao {
         String sql="INSERT INTO User(username, password, sex, email, website, profile) VALUES(?,?,?,?,?,?) ";
         Connection connection=Utils.getConnection();
         // 在这里注意插入的是pass的 hashCode
+        // 之后发现hash 结果和直接hash 不一样...不知道为什么 ..
+        // 原因找出来了,原来是我进行了双重hash....()
         Utils.updateInfo(connection,sql,
                 user.getUsername(),String.valueOf(user.getPassword().hashCode()),user.getSex(),user.getEmail(),user.getWebsite(),user.getProfile());
+//
+    }
 
+    /**
+     * 查询用户的密码,
+     * @param uName 用户名
+     * @return 如果有密码 返回密码的hash
+     *          如果没密码 返回""
+     */
+    public String selectPasswordByUsername(String uName){
+        /*
+         * 先获取连接,
+         * 写好 sql 语句
+         * 先调用 findByUsername
+         *      如果返回true
+         *          调用 selectInfo 得到结果集,然后在得到第一行第一列的值
+         *      如果返回false
+         *          返回""
+         */
+        Connection connection = Utils.getConnection();
+        String sql="SELECT password FROM User WHERE username=? ";
+        try {
+            boolean hsUname = findByUsername(uName);
+            // 如果存在这个用户
+            if(hsUname){
+                ResultSet resultSet = Utils.selectInfo(connection, sql, uName);
+                resultSet.next();
+                return resultSet.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }
