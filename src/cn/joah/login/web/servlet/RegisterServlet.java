@@ -41,8 +41,11 @@ public class RegisterServlet extends HttpServlet {
                     // 注册
                     userService.register(user);
                     // 注册成功之后显示注册成功的信息, 并转发到登录界面
-                    response.getWriter().write(" 注册成功! ");
-//            response.sendRedirect("/jsps/login.jsp");
+                    response.getWriter().write(" 注册成功!  三秒之后跳转到登录界面。");
+                    response.getWriter().print("如果没有跳转<a href='" +request.getContextPath()+
+                            "/jsps/login.jsp"+"'>请点击这里</a>");
+                    response.setHeader("refresh","3;url=/jsps/login.jsp");
+//                    response.sendRedirect("/jsps/login.jsp");
                 } catch (UserException e) {
                     request.setAttribute("registPageErr",e.getMessage());
 

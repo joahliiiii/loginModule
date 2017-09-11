@@ -11,7 +11,8 @@
 <html>
 <head>
     <title>login</title>
-    <script src="cn/joah/login/web/servlet/RegisterServlet"></script>
+    <script>var contextPath="${pageContext.request.contextPath}";</script>
+    <script src="${pageContext.request.contextPath}/javascripts/registPageJS.js"></script>
 </head>
 <body>
     <p align="center" style="font-weight: 500;color: red">${loginPageErr}</p>
@@ -25,7 +26,7 @@
                     <span id="passInfo"></span><br>
 
         <label for="captcheI">captche</label><input type="text" name="captche" id="captcheI">
-            <a href="javascript:captcheChange()"><img src="<c:url value="/cn/joah/login/commons/captche/CaptcheServlet"/>"></a>
+            <a href="javascript:captcheChange()"><img src="${pageContext.request.contextPath}/cn/joah/login/commons/captche/CaptcheServlet" id="ICaptche"/></a>
                 <span id="capInfo"></span>
 
         <button type="submit" onclick="return checkLogin()"> submit </button>
