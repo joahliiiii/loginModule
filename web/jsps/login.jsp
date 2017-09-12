@@ -16,7 +16,6 @@
 </head>
 <body>
     <p align="center" style="font-weight: 500;color: red">${loginPageErr}</p>
-    <p>hello this is login.jsp</p>
     <h1>Sign in to mypage</h1>
     <form action="${pageContext.request.contextPath}/cn/joah/login/web/servlet/LoginServlet" method="post">
         <label for="username">username</label><br><input type="text" name="username" id="username" value="${User.username}" onblur="checkUname()">
@@ -25,11 +24,12 @@
         <label for="password">password</label><br><input type="password" name="password" id="password" onblur="checkPass()" >
                     <span id="passInfo"></span><br>
 
-        <label for="captcheI">captche</label><input type="text" name="captche" id="captcheI">
+        <label for="captcheI">captche</label><br><input type="text" name="captche" id="captcheI" style="width: 255px">
             <a href="javascript:captcheChange()"><img src="${pageContext.request.contextPath}/cn/joah/login/commons/captche/CaptcheServlet" id="ICaptche"/></a>
-                <span id="capInfo"></span>
+                <span id="capInfo"></span><br>
 
-        <button type="submit" onclick="return checkLogin()"> submit </button>
+        <button type="submit" onclick="return checkLogin()"> sign in </button>
+        <button type="button"  onclick="javascript:window.location.href='regist.jsp'"> sign up </button>
     </form>
 </body>
 </html>

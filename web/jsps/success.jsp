@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: joah
@@ -11,6 +12,14 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>welcome ${sessionScope.username}</h1>
+    <c:choose>
+        <c:when test="${sessionScope.loginStatus!='logged' && sessionScope.loginStatus!=''}">
+            <p align="center" style="color: red">请先登录系统 <a href="login.jsp">点击登录</a></p>
+        </c:when>
+        <c:otherwise>
+            <p align="center">Welcome ${sessionScope.username}</p>
+        </c:otherwise>
+    </c:choose>
+
 </body>
 </html>

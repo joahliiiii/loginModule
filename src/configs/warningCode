@@ -190,4 +190,6 @@ Process finished with exit code 0
  java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
  com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
 
- 在关闭tomcat的时候出现的警告.目前没解决.
+ 在关闭tomcat的时候出现的警告.
+ 解决地址 https://stackoverflow.com/questions/28105803/tomcat8-memory-leak, 结果就是这个属于正常情况,
+        如果想要没警告就移除lib下的mysql driver.

@@ -36,15 +36,15 @@
         <label for="profile">profile: <br></label><textarea name="profile" style="width: 334px; height: 42px;" id="profile" >${User.profile}</textarea><span id="proInfo"></span> <br>
         <%--<input type="text" name="captche" style="width: 53px" id="IcaptcheI" onblur="checkCaptche(${sessionScope.captche})"/>--%>
 
-        <label for="IcaptcheI">captche:</label><input type="text" name="captche" style="width: 53px" id="IcaptcheI"/>
-        <a href="javascript:captcheChange()"><img id="ICaptche" src="${pageContext.request.contextPath}/cn/joah/login/commons/captche/CaptcheServlet"></a>
+        <label for="IcaptcheI">captche:</label><input type="text" name="captche" style="width: 190px" id="IcaptcheI"/>
+        <a href="javascript:captcheChange()"><img id="ICaptche" src="${pageContext.request.contextPath}/cn/joah/login/commons/captche/CaptcheServlet" ></a>
         <%--<script type="text/javascript">--%>
             <%--var captche="<%=session.getAttribute("captche")%>";--%>
             <%--alert(captche);--%>
         <%--</script>--%>
         <span id="capInfo"></span><br>
 
-        <button type="submit" onclick="return check()"  >submit</button>
+        <button type="submit" onclick="return check()"  > sign up </button>
     </form>
 </body>
 </html>
