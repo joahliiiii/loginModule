@@ -20,26 +20,45 @@ public class UserDao {
      * @return 如果不存在这个username就返回false
      */
     public boolean findByUsername(String uName) {
-        /**
+        /*
          * 先获取链接
          * 写好sql
          * 调用selectInfo(conng,sql,args)
          */
-        Connection connection= Utils.getConnection();
-        String sql="SELECT count(*) FROM User WHERE username=? ";
-        ResultSet resultSet=Utils.selectInfo(connection,sql,uName);
 
-        try {
-            resultSet.next();
-            int value = resultSet.getInt(1);
-            // 得到第二行第一列的值
-            if(value != 0){
-                return  true;
+        Connection connection= Utils.getConnection();
+        String sql="SELECT username,password FROM User WHERE username=? ";
+        User user = Utils.selectInfoUser(connection, sql, uName);
+        return user != null;
+    }
+    /**
+     * 查询用户的密码,
+     * @param uName 用户名
+     * @return 如果有密码 返回密码的hash
+     *          如果没密码 返回""
+     */
+    public String selectPasswordByUsername(String uName){
+        /*
+         * 先获取连接,
+         * 写好 sql 语句
+         * 先调用 findByUsername
+         *      如果返回true
+         *          调用 selectInfo 得到结果集,然后在得到第一行第一列的值
+         *      如果返回false
+         *          返回""
+         */
+        Connection connection = Utils.getConnection();
+        String sql="SELECT password FROM User WHERE username=? ";
+        boolean hsUname = findByUsername(uName);
+        // 如果存在这个用户
+        if(hsUname){
+            // 得到User 对象
+            User user = Utils.selectInfoUser(connection, sql, uName);
+            if(user!=null){
+                return user.getPassword();
             }
-        } catch (SQLException e){
-            e.printStackTrace();
         }
-        return false;
+        return "";
     }
 
     /**
@@ -62,35 +81,5 @@ public class UserDao {
 //
     }
 
-    /**
-     * 查询用户的密码,
-     * @param uName 用户名
-     * @return 如果有密码 返回密码的hash
-     *          如果没密码 返回""
-     */
-    public String selectPasswordByUsername(String uName){
-        /*
-         * 先获取连接,
-         * 写好 sql 语句
-         * 先调用 findByUsername
-         *      如果返回true
-         *          调用 selectInfo 得到结果集,然后在得到第一行第一列的值
-         *      如果返回false
-         *          返回""
-         */
-        Connection connection = Utils.getConnection();
-        String sql="SELECT password FROM User WHERE username=? ";
-        try {
-            boolean hsUname = findByUsername(uName);
-            // 如果存在这个用户
-            if(hsUname){
-                ResultSet resultSet = Utils.selectInfo(connection, sql, uName);
-                resultSet.next();
-                return resultSet.getString(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
+
 }

@@ -1,9 +1,15 @@
 package cn.joah.login.commons.jdbc;
 
 
+import cn.joah.login.commons.reflect.ReflectUtils;
+import cn.joah.login.entity.User;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import javax.sql.DataSource;
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 使用c3p0
@@ -77,7 +83,7 @@ public class Utils {
      * @param sql sql语句
 //     * @param args 不定参数
      */
-    public static ResultSet selectInfo(Connection conn,String sql){
+    /*public static ResultSet selectInfo(Connection conn,String sql){
         PreparedStatement preStatemt=null;
         ResultSet resultSet1=null;
         try {
@@ -90,15 +96,15 @@ public class Utils {
 //            release(conn,preStatemt,null);
         }
         return resultSet1;
-    }
+    }*/
 
     /**
      * 带参数的查询
-     * @param conn 数据库连接
-     * @param sql sql语句
-     * @param args 不定参数
-     * @return 返回结果集
-     */
+     * param conn 数据库连接
+     * param sql sql语句
+     * param args 不定参数
+     * return 返回结果集
+     *//*
     public static ResultSet selectInfo(Connection conn,String sql, String ...args){
         PreparedStatement preSdtmt=null;
         ResultSet resSet=null;
@@ -115,7 +121,93 @@ public class Utils {
 //            Utils.release(conn,preSdtmt,resSet);
         }
         return resSet;
+    }*/
+
+    /**
+     * 查询语句, 返回结果的user对象,但是现在只能查询结果为一条记录
+     *      解决了之前的返回resultSet,不能释放连接的bug...
+     * @param conn 数据库连接
+     * @param sql sql语句
+     * @param args 不定参数
+     * @return 返回user对象
+     */
+    public static User selectInfoUser(Connection conn, String sql, String ...args){
+        PreparedStatement preparedStatement=null;
+        ResultSet resultSet=null;
+        User user=null;
+
+        try {
+            preparedStatement = conn.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                String arg = args[i];
+                preparedStatement.setString(i+1,arg);
+            }
+            resultSet = preparedStatement.executeQuery();
+            // 如果Map的大小为0 那么就返回null
+            Map<String, String> map = resultsetToMap(resultSet);
+            // 如果map里面没东西
+            if(map.size()==0){
+                return null;
+            }else{
+                user = ReflectUtils.toBean2(map,User.class);
+            }
+
+        } catch (SQLException | IllegalAccessException | InstantiationException | IntrospectionException | InvocationTargetException e) {
+            e.printStackTrace();
+        }finally {
+            release(conn,preparedStatement,resultSet);
+        }
+        return user;
     }
+
+    /**
+     * 把数据库查询到结果集转换成map
+     * @param resultSet 结果集
+     * @return 返回结果集的Map
+     */
+    public static Map<String,String> resultsetToMap(ResultSet resultSet){
+        Map<String,String> map= new HashMap<>();
+        try {
+            // 如果resultSet有数据
+            while(resultSet.next()){
+                // 得到元数据
+                ResultSetMetaData metaData = resultSet.getMetaData();
+                int columnCount = metaData.getColumnCount();
+                // 遍历一行所有的列
+                for (int i = 1;i<=columnCount; i++) {
+                    String columnName = metaData.getColumnName(i);
+                    String string = resultSet.getString(i);
+                    map.put(columnName,string);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+    /*public Map<String, Map<String,String> > resultsetToMap(ResultSet resultSet, String uName){
+        Map<String,Map<String,String>> map = new HashMap<>();
+        Map<String,String> userInfo= new HashMap<>();
+
+        System.out.println("map size: "+map.size());
+
+        try {
+            while(resultSet.next()){
+                ResultSetMetaData metaData = resultSet.getMetaData();
+                int columnCount = metaData.getColumnCount();
+                for (int i = 1; i <=columnCount; i++) {
+                    String columnName = metaData.getColumnName();
+                    String string = resultSet.getString(i);
+                    userInfo.put(columnName,string);
+                }
+            }
+            map.put(uName,userInfo);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }*/
     /**
      * 释放资源,最后创建的最先释放
      * 我也不知道这个释放资源方法是否完全正确 .但是感觉是正确的.
