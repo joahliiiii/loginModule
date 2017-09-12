@@ -8,6 +8,19 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public class ReflectUtils {
+    /**
+     *
+     * @param map
+     * @param clazz
+     * @param <T>
+     * @return
+     * @throws ClassNotFoundException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     * @throws IntrospectionException
+     */
     public static  <T> T toBean(Map<String, String[]> map, Class<T> clazz) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, IntrospectionException {
         // 创建对象
         T o = clazz.newInstance();
@@ -35,6 +48,34 @@ public class ReflectUtils {
             }
         }
 //        System.out.println("user 对象: "+o);
+        return o;
+    }
+
+    public static <T> T toBean2(Map<String,String> map,Class<T> clazz) throws IllegalAccessException, InstantiationException, InvocationTargetException, IntrospectionException {
+        // 得到对象
+        T o = clazz.newInstance();
+
+        Field[] declaredFields = clazz.getDeclaredFields();
+        // 遍历所有属性
+        for (Field declaredField : declaredFields) {
+            // 得到属性名
+            String name = declaredField.getName();
+            // 根据 属性名和类名 得到属性描述对象
+            PropertyDescriptor propertyDescriptor= new PropertyDescriptor(name,clazz);
+            // 得到属性的写入方法对象
+            Method writeMethod = propertyDescriptor.getWriteMethod();
+            // 得到Map的键的集合
+            Set<String> strings = map.keySet();
+            // 遍历所有的键
+            for(String key : strings){
+                // 如果属性名 和 map的键相对应
+                if(name.equals(key)){
+                    String value = map.get(key);
+                    // 传入参数, 执行写入方法
+                    writeMethod.invoke(o,value);
+                }
+            }
+        }
         return o;
     }
 
