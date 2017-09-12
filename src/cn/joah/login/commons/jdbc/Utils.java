@@ -79,8 +79,8 @@ public class Utils {
      * 查找  这里不建议返回的resultSet是成员变量.
      * 在这里要注意,如果需要返回的resultSet是成员变量,那么就要注意了,不要吧resultSet释放了,
      * 但是哪个都不能释放啊.,难道不释放么?
-     * @param conn 数据库连接
-     * @param sql sql语句
+     * param conn 数据库连接
+     * param sql sql语句
 //     * @param args 不定参数
      */
     /*public static ResultSet selectInfo(Connection conn,String sql){
@@ -98,7 +98,7 @@ public class Utils {
         return resultSet1;
     }*/
 
-    /**
+    /*
      * 带参数的查询
      * param conn 数据库连接
      * param sql sql语句
@@ -186,28 +186,7 @@ public class Utils {
         }
         return map;
     }
-    /*public Map<String, Map<String,String> > resultsetToMap(ResultSet resultSet, String uName){
-        Map<String,Map<String,String>> map = new HashMap<>();
-        Map<String,String> userInfo= new HashMap<>();
 
-        System.out.println("map size: "+map.size());
-
-        try {
-            while(resultSet.next()){
-                ResultSetMetaData metaData = resultSet.getMetaData();
-                int columnCount = metaData.getColumnCount();
-                for (int i = 1; i <=columnCount; i++) {
-                    String columnName = metaData.getColumnName();
-                    String string = resultSet.getString(i);
-                    userInfo.put(columnName,string);
-                }
-            }
-            map.put(uName,userInfo);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return map;
-    }*/
     /**
      * 释放资源,最后创建的最先释放
      * 我也不知道这个释放资源方法是否完全正确 .但是感觉是正确的.

@@ -8,12 +8,15 @@ import org.junit.Test;
 public class userDaoTest {
     @Test
     public void findByUsernameTest() throws UserException {
+
+        String testName="summering";
+
         UserDao UserDao =new UserDao();
-        boolean find = UserDao.findByUsername("joah");
+        boolean find = UserDao.findByUsername(testName);
         if(find){
-            System.out.println("joah 在数据库内存在!");
+            System.out.println(testName+" 在数据库内存在!");
         }else{
-            System.out.println("joah 在数据库内不存在!");
+            System.out.println(testName+" 在数据库内不存在!");
         }
     }
     @Test

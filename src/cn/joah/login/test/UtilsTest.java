@@ -2,6 +2,7 @@ package cn.joah.login.test;
 
 
 import cn.joah.login.commons.jdbc.Utils;
+import cn.joah.login.entity.User;
 import org.junit.Test;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -26,7 +27,7 @@ public class UtilsTest {
 
     }
     @Test
-    public void seletInfoTest2(){
+   /* public void seletInfoTest2(){
         Connection connection=Utils.getConnection();
         String sql="select * from User where username=? ";
         ResultSet resultSet = Utils.selectInfo(connection, sql, "joah");
@@ -55,39 +56,16 @@ public class UtilsTest {
         }finally {
             Utils.release(connection,null,resultSet);
         }
-    }
-    @Test
-    public void selectInfoTest(){
+    }*/
+    public void selectInfoUserTest(){
         Connection conn;
-        ResultSet resultSet;
         String sql="select * from User";
 
-        try {
-            conn=Utils.getConnection();
+
+        conn=Utils.getConnection();
 //            System.out.println("connection: "+conn);
-            resultSet=Utils.selectInfo(conn,sql);
-            /*resultSet.last();
-            System.out.println("rows: "+resultSet.getRow());*/
-            if(resultSet!=null){
-                // 获取元数据对象
-                ResultSetMetaData meData=resultSet.getMetaData();
-                int count = meData.getColumnCount();
-                // 遍历输出每一列的名字
-                for (int i = 1; i <= count; i++) {
-                    System.out.print(meData.getColumnName(i)+"\t");
-                }
-                System.out.println();
-                // 输出每个值
-                while(resultSet.next()){
-                    for (int i = 1; i <= count; i++) {
-                        System.out.print(resultSet.getString(i)+"\t");
-                    }
-                    System.out.println();
-                }
-            }
+        User user=Utils.selectInfoUser(conn,sql);
+        System.out.println("user: "+user.getUsername()+" pass: "+user.getPassword());
 //            System.out.println(resultSet);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }
